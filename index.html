@@ -14,10 +14,10 @@
             --accent-orange: #FF6600;      /* Laranja Mantecorp, vibrante */
             --accent-orange-dark: #CC5200; /* Sombra do Laranja */
             
-            --bg-color: #F4F7F9;           /* Fundo branco-gelo, muito profissional */
+            --bg-color: #F4F7F9;           /* Fundo branco-gelo */
             --card-color: #FFFFFF;         /* Card branco puro */
-            --text-primary: #1A202C;       /* Cor de texto principal (quase preto) */
-            --text-secondary: #4A5568;     /* Cor de texto secundária (cinza) */
+            --text-primary: #1A202C;       /* Cor de texto principal */
+            --text-secondary: #4A5568;     /* Cor de texto secundária */
         }
 
         /* --- Estilos Globais --- */
@@ -34,6 +34,9 @@
             padding: 40px 20px;
             box-sizing: border-box;
             overflow-x: hidden;
+            /* Melhora a renderização de fontes */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         /* --- TÍTULO (Estilo Executivo) --- */
@@ -67,16 +70,15 @@
         /* --- CONTAINER DOS CARDS (Responsivo) --- */
         .card-container {
             display: grid;
+            /* Desktop: Auto-fit (quantos couberem) com min de 320px */
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
             gap: 30px;
             width: 100%;
             max-width: 1400px;
-            
-            /* Define a perspectiva 3D para os cards filhos */
             perspective: 1500px; 
         }
 
-        /* --- O EFEITO 3D MODERNO NO CARD --- */
+        /* --- EFEITO 3D MODERNO NO CARD --- */
         .futuristic-card {
             background-color: var(--card-color);
             border: 1px solid #E2E8F0;
@@ -87,12 +89,9 @@
             box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.04), 
                         0px 10px 30px rgba(0, 0, 0, 0.06);
             
-            /* Habilita o contexto 3D para os filhos */
             transform-style: preserve-3d; 
-            
-            /* Propriedade para suavizar transições 3D */
             transform: translateZ(0); 
-            transition: transform 0.4s cubic-bezier(0.1, 0.7, 0.3, 1), /* Transição 3D mais elegante */
+            transition: transform 0.4s cubic-bezier(0.1, 0.7, 0.3, 1),
                         box-shadow 0.4s ease;
             
             position: relative;
@@ -102,8 +101,6 @@
         .futuristic-card:hover {
             box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.06), 
                         0px 20px 40px rgba(0, 90, 156, 0.15);
-            
-            /* A inclinação 3D sutil e "executiva" para o card */
             transform: rotateY(8deg) rotateX(3deg) scale(1.02) translateZ(10px); 
         }
 
@@ -114,17 +111,13 @@
             margin-bottom: 25px;
             letter-spacing: 1px;
             position: relative;
-            
-            /* O h2 "flutua" mais à frente */
-            transform: translateZ(40px); /* Mais profundo */
+            transform: translateZ(40px);
             transition: transform 0.4s cubic-bezier(0.1, 0.7, 0.3, 1);
         }
 
-        /* Garante que os elementos internos mantenham sua posição relativa no 3D */
         .futuristic-card:hover h2 {
-            transform: translateZ(60px); /* Se move ainda mais à frente ao hover do card */
+            transform: translateZ(60px);
         }
-
 
         /* --- BOTÕES (Efeito "Gradient Wipe" Executivo) --- */
         .btn-futuristic {
@@ -144,7 +137,6 @@
             position: relative;
             overflow: hidden;
             
-            /* O botão "flutua" na camada do meio */
             transform: translateZ(20px); 
             transition: background-position 0.5s ease-in-out, 
                         transform 0.4s cubic-bezier(0.1, 0.7, 0.3, 1),
@@ -155,12 +147,9 @@
             background-position: 100% 0;
         }
 
-        /* HOVER: Desliza o gradiente e eleva o botão */
         .btn-futuristic:hover {
             background-position: 0% 0;
-            
-            /* Eleva o botão dentro do card 3D */
-            transform: translateZ(35px) translateY(-3px); /* Move mais à frente */
+            transform: translateZ(35px) translateY(-3px);
             box-shadow: 0 8px 0 var(--accent-orange-dark), 0 5px 15px rgba(255, 102, 0, 0.4);
         }
 
@@ -169,12 +158,14 @@
             box-shadow: 0 2px 0 var(--accent-orange-dark);
         }
 
-        /* --- RESPONSIVIDADE (iPad e Celular) --- */
+        /* --- RESPONSIVIDADE --- */
         
+        /* iPad (Tablet) - 2 colunas ou 1 coluna */
         @media (max-width: 1024px) {
             .card-container {
+                /* auto-fit ainda funciona, mas o minmax menor ajuda a encaixar 2 colunas */
                 grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-                max-width: 90%;
+                max-width: 90%; /* Centraliza o container */
             }
             .title-container h1 {
                 font-size: 2.5rem;
@@ -184,17 +175,32 @@
             }
         }
         
+        /* CELULAR (com CARDS MAIORES) */
         @media (max-width: 600px) {
             body {
-                padding: 20px 10px;
+                padding: 30px 20px; /* Mais padding para os cards "respirarem" */
             }
             .card-container {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr; /* Força 1 coluna */
                 max-width: 100%;
-                gap: 20px;
+                gap: 25px; /* Mais espaço entre os cards */
             }
             .futuristic-card {
-                padding: 25px 20px;
+                /* Mantém o padding grande para um card robusto */
+                padding: 30px 25px; 
+                
+                /* Desativa o efeito 3D de hover em toque (evita bugs) */
+                transform: none;
+                box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.04), 
+                            0px 10px 30px rgba(0, 0, 0, 0.06);
+            }
+            /* Remove a inclinação 3D no celular */
+            .futuristic-card:hover {
+                transform: none;
+            }
+            
+            .title-container {
+                margin-bottom: 30px;
             }
             .title-container h1 {
                 font-size: 2rem;
@@ -204,12 +210,27 @@
                 font-size: 1rem;
                 letter-spacing: 3px;
             }
+            
+            /* Título do card maior */
             .futuristic-card h2 {
-                font-size: 1.3rem;
+                font-size: 1.5rem; 
+                transform: translateZ(0); /* Remove 3D no celular */
             }
+            
+            /* Botão do card maior */
             .btn-futuristic {
-                padding: 14px 30px;
-                font-size: 1rem;
+                padding: 16px 35px;
+                font-size: 1.1rem;
+                transform: translateZ(0); /* Remove 3D no celular */
+            }
+
+            .futuristic-card:hover h2,
+            .btn-futuristic:hover {
+                transform: none; /* Desativa 3D de paralaxe no hover do celular */
+            }
+
+            .btn-futuristic:active {
+                transform: translateY(2px); /* Efeito 2D simples de clique */
             }
         }
     </style>
@@ -232,7 +253,7 @@
         
         <div class="futuristic-card">
             <h2>LAVAGEM NASAL RINOSORO</h2>
-            <a href="https://sistemashypera.github.io/videorinosorofinal/" target="_blank" rel="noopener noreferrer" class="btn-futuristic">
+            <a href="httpss://sistemashypera.github.io/videorinosorofinal/" target="_blank" rel="noopener noreferrer" class="btn-futuristic">
                 Ver Vídeo
             </a>
         </div>
