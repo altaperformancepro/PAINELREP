@@ -3,274 +3,129 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PAINEL REP - ALTA PERFORMANCE (Mobile Compacto)</title>
+    <title>PAINEL REP - ALTA PERFORMANCE (Executivo)</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
     
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
-        /* --- Variáveis CSS (Paleta Executiva) --- */
-        :root {
-            --primary-blue: #005A9C;       
-            --accent-orange: #FF6600;      
-            --accent-orange-dark: #CC5200; 
-            --bg-color: #EEEEEE;           
-            --card-color: #FFFFFF;         
-            --text-primary: #1A202C;       
-            --text-secondary: #4A5568;     
-        }
-
-        /* --- Estilos Globais --- */
         body {
-            font-family: 'Poppins', sans-serif; 
-            background-color: var(--bg-color); 
-            color: var(--text-primary); 
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            min-height: 100vh;
-            margin: 0;
-            padding: 40px 20px;
-            box-sizing: border-box;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
+            font-family: 'Poppins', sans-serif;
+            background-color: #EEEEEE; 
         }
 
-        /* --- TÍTULO (Estilo Executivo) --- */
-        .title-container {
-            text-align: center;
-            margin-bottom: 50px;
+        /* Estilo de Botão 3D Customizado (mantido) */
+        .btn-3d {
+            background-color: #005A9C; 
+            box-shadow: 0 4px 0 #004175; 
+            transition: all 0.15s ease-out;
         }
-
-        .title-container h1 {
-            font-size: 2.8rem;
-            font-weight: 700;
-            color: var(--primary-blue);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin: 0;
-            line-height: 1.2;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        .btn-3d:hover {
+            background-color: #006BCF; 
+            box-shadow: 0 3px 0 #004175;
+            transform: translateY(-1px);
+        }
+        .btn-3d:active {
+            background-color: #006BCF;
+            box-shadow: 0 0 0 #004175;
+            transform: translateY(3px);
         }
         
-        .title-container .subtitle {
-            display: block;
-            font-size: 1.4rem;
-            font-weight: 500;
-            color: var(--accent-orange);
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            margin: 0;
-            padding-top: 5px;
+        .btn-3d-accent {
+            background-color: #FF6600; 
+            box-shadow: 0 4px 0 #CC5200; 
+            transition: all 0.15s ease-out;
+        }
+        .btn-3d-accent:hover {
+            background-color: #ff771a;
+            box-shadow: 0 3px 0 #CC5200;
+            transform: translateY(-1px);
+        }
+        .btn-3d-accent:active {
+            background-color: #ff771a;
+            box-shadow: 0 0 0 #CC5200;
+            transform: translateY(3px);
+        }
+
+        /* ----- Efeitos 3D para o Título "PAINEL REP" ----- */
+        .title-3d-primary {
+            /* Múltiplas sombras para simular profundidade e extrusão */
+            text-shadow: 
+                2px 2px 0px rgba(0, 0, 0, 0.1),
+                4px 4px 0px rgba(0, 0, 0, 0.08),
+                6px 6px 0px rgba(0, 0, 0, 0.06),
+                8px 8px 0px rgba(0, 0, 0, 0.04),
+                10px 10px 0px rgba(0, 0, 0, 0.02);
+            /* Opcional: Um leve ajuste de cor para "profundidade" visual */
+            color: #00508a; /* Um pouco mais escuro que o azul original para base */
         }
         
-        /* --- CONTAINER DOS CARDS (Responsivo) --- */
-        .card-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
-            gap: 30px;
-            width: 100%;
-            max-width: 1400px;
-            perspective: 1500px; 
-        }
-
-        /* --- EFEITO 3D MODERNO NO CARD (Desktop/Tablet) --- */
-        .futuristic-card {
-            background-color: var(--card-color);
-            border: 1px solid #E2E8F0;
-            border-radius: 12px;
-            padding: 30px 25px;
-            text-align: center;
-            box-shadow: 
-                0 2px 4px rgba(0, 0, 0, 0.03), 
-                0 8px 16px rgba(0, 0, 0, 0.06), 
-                0 16px 32px rgba(0, 0, 0, 0.08); 
-            transform-style: preserve-3d; 
-            transform: translateZ(0); 
-            transition: transform 0.4s cubic-bezier(0.1, 0.7, 0.3, 1),
-                        box-shadow 0.4s ease;
-            position: relative;
-        }
-
-        .futuristic-card:hover {
-            box-shadow: 
-                0 4px 8px rgba(0, 0, 0, 0.05),
-                0 16px 32px rgba(0, 0, 0, 0.1),
-                0 32px 64px rgba(0, 90, 156, 0.25); 
-            transform: rotateY(6deg) rotateX(2deg) scale(1.02) translateZ(15px);
-        }
-
-        .futuristic-card h2 {
-            font-size: 1.6rem;
-            color: var(--text-primary);
-            margin-bottom: 25px;
-            letter-spacing: 1px;
-            position: relative;
-            transform: translateZ(40px);
-            transition: transform 0.4s cubic-bezier(0.1, 0.7, 0.3, 1);
-        }
-
-        .futuristic-card:hover h2 {
-            transform: translateZ(60px);
-        }
-
-        /* --- BOTÕES (Efeito "Gradient Wipe" Executivo) --- */
-        .btn-futuristic {
-            display: inline-block;
-            padding: 16px 35px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--card-color);
-            border: none;
-            border-radius: 8px;
-            text-decoration: none;
-            text-align: center;
-            cursor: pointer;
-            box-shadow: 0 4px 0 var(--accent-orange-dark); 
-            position: relative;
-            overflow: hidden;
-            transform: translateZ(20px); 
-            transition: background-position 0.5s ease-in-out, 
-                        transform 0.4s cubic-bezier(0.1, 0.7, 0.3, 1),
-                        box-shadow 0.2s ease-out;
-            background: linear-gradient(90deg, var(--primary-blue), var(--accent-orange), var(--primary-blue));
-            background-size: 200% 100%;
-            background-position: 100% 0;
-        }
-
-        .btn-futuristic:hover {
-            background-position: 0% 0;
-            transform: translateZ(35px) translateY(-3px);
-            box-shadow: 0 8px 0 var(--accent-orange-dark), 0 5px 15px rgba(255, 102, 0, 0.4);
-        }
-
-        .btn-futuristic:active {
-            transform: translateZ(18px) translateY(1px);
-            box-shadow: 0 2px 0 var(--accent-orange-dark);
-        }
-
-        /* --- RESPONSIVIDADE --- */
-        
-        /* iPad (Tablet) */
-        @media (max-width: 1024px) {
-            .card-container {
-                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-                max-width: 90%;
-            }
-            .title-container h1 {
-                font-size: 2.5rem;
-            }
-            .title-container .subtitle {
-                font-size: 1.2rem;
-            }
-        }
-        
-        /* * ===============================================
-         * --- OTIMIZAÇÃO PARA CELULAR (FORMATADO/COMPACTO) ---
-         * ===============================================
-        */
-        @media (max-width: 600px) {
-            body {
-                padding: 20px 15px; /* Padding superior reduzido */
-                justify-content: flex-start; 
-                height: auto; 
-                overflow: auto; 
-            }
-            
-            .card-container {
-                grid-template-columns: 1fr; /* 1 coluna */
-                max-width: 100%;
-                gap: 20px; /* Espaço entre cards reduzido */
-            }
-            
-            .futuristic-card {
-                padding: 20px; /* Padding interno do card reduzido */
-                transform: none; 
-                box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.04), 
-                            0px 10px 30px rgba(0, 0, 0, 0.06);
-            }
-            .futuristic-card:hover {
-                transform: none; 
-            }
-            
-            .title-container {
-                margin-bottom: 30px;
-            }
-            .title-container h1 {
-                font-size: 2rem;
-                letter-spacing: 1px;
-            }
-            .title-container .subtitle {
-                font-size: 1rem;
-                letter-spacing: 3px;
-            }
-            
-            /* Título do card ajustado */
-            .futuristic-card h2 {
-                font-size: 1.3rem; /* Fonte menor */
-                margin-bottom: 20px; /* Margem menor */
-                transform: translateZ(0); 
-            }
-            
-            /* Botão do card em bloco, mas ajustado */
-            .btn-futuristic {
-                display: block; 
-                padding: 15px 20px; /* Padding menor */
-                font-size: 1.0rem; /* Fonte menor */
-                transform: translateZ(0); 
-            }
-
-            .futuristic-card:hover h2,
-            .btn-futuristic:hover {
-                transform: none; 
-                background-position: 100% 0; 
-            }
-
-            .btn-futuristic:active {
-                transform: translateY(2px) scale(0.98); 
-                background-position: 0% 0; 
-            }
+        /* ----- Efeitos 3D para o Subtítulo "ALTA PERFORMANCE" ----- */
+        .title-3d-secondary {
+            /* Múltiplas sombras para simular profundidade, mais sutil */
+            text-shadow: 
+                1px 1px 0px rgba(0, 0, 0, 0.08),
+                2px 2px 0px rgba(0, 0, 0, 0.06),
+                3px 3px 0px rgba(0, 0, 0, 0.04);
+            /* Opcional: Um leve ajuste de cor para "profundidade" visual */
+            color: #d15500; /* Um pouco mais escuro que o laranja original para base */
         }
     </style>
 </head>
-<body>
+<body class="flex flex-col items-center min-h-screen p-4 md:p-8">
 
-    <div class="title-container">
-        <h1>PAINEL REP</h1>
-        <span class="subtitle">ALTA PERFORMANCE</span>
+    <div class="text-center mb-10 md:mb-12">
+        <h1 class="text-4xl md:text-5xl font-bold text-blue-900 title-3d-primary">PAINEL REP</h1>
+        <span class="text-xl md:text-2xl font-light text-orange-600 tracking-widest uppercase title-3d-secondary">ALTA PERFORMANCE</span>
     </div>
 
-    <div class="card-container">
+    <div class="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
         
-        <div class="futuristic-card">
-            <h2>LISTA DE PREÇOS MANTECORP</h2>
-            <a href="https://altaperformancepro.github.io/LISTAPRECO/" target="_blank" rel="noopener noreferrer" class="btn-futuristic">
+        <div class="bg-white rounded-xl shadow-lg flex flex-col justify-between p-6 transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+            <h2 class="text-xl font-semibold text-gray-800 mb-5 text-center uppercase">
+                <span class="block text-4xl mb-3">🏷️</span>
+                LISTA DE PREÇOS MANTECORP
+            </h2>
+            <a href="https://altaperformancepro.github.io/LISTAPRECO/" target="_blank" rel="noopener noreferrer" 
+               class="btn-3d text-white font-medium py-3 px-6 rounded-lg w-full text-center text-lg">
                 Acessar Lista
             </a>
         </div>
         
-        <div class="futuristic-card">
-            <h2>LAVAGEM NASAL RINOSORO</h2>
-            <a href="https://sistemashypera.github.io/videorinosorofinal/" target="_blank" rel="noopener noreferrer" class="btn-futuristic">
+        <div class="bg-white rounded-xl shadow-lg flex flex-col justify-between p-6 transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+            <h2 class="text-xl font-semibold text-gray-800 mb-5 text-center uppercase">
+                <span class="block text-4xl mb-3">🎥</span>
+                LAVAGEM NASAL RINOSORO
+            </h2>
+            <a href="https://sistemashypera.github.io/videorinosorofinal/" target="_blank" rel="noopener noreferrer" 
+               class="btn-3d-accent text-white font-medium py-3 px-6 rounded-lg w-full text-center text-lg">
                 Ver Vídeo
             </a>
         </div>
         
-        <div class="futuristic-card">
-            <h2>PEDIDO PDV</h2>
-            <a href="https://altaperformancepro.github.io/PEDIDO_MANTECORP/" target="_blank" rel="noopener noreferrer" class="btn-futuristic">
+        <div class="bg-white rounded-xl shadow-lg flex flex-col justify-between p-6 transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+            <h2 class="text-xl font-semibold text-gray-800 mb-5 text-center uppercase">
+                <span class="block text-4xl mb-3">🛒</span>
+                PEDIDO PDV
+            </h2>
+            <a href="https://altaperformancepro.github.io/PEDIDO_MANTECORP/" target="_blank" rel="noopener noreferrer" 
+               class="btn-3d text-white font-medium py-3 px-6 rounded-lg w-full text-center text-lg">
                 Fazer Pedido
             </a>
         </div>
         
-        <div class="futuristic-card">
-            <h2>SIMULADOR PREMIAÇÃO</h2>
-            <a href="https://altaperformancepro.github.io/simuladorpremiofull/" target="_blank" rel="noopener noreferrer" class="btn-futuristic">
-                Simular Premiação
+        <div class="bg-white rounded-xl shadow-lg flex flex-col justify-between p-6 transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+            <h2 class="text-xl font-semibold text-gray-800 mb-5 text-center uppercase">
+                <span class="block text-4xl mb-3">🏆</span>
+                SIMULADOR PREMIAÇÃO
+            </h2>
+            <a href="https://altaperformancepro.github.io/simuladorpremiofull/" target="_blank" rel="noopener noreferrer" 
+               class="btn-3d text-white font-medium py-3 px-6 rounded-lg w-full text-center text-lg">
+                Acessar Simulador
             </a>
         </div>
-        
+
     </div>
 
 </body>
