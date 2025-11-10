@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PAINEL REP - ALTA PERFORMANCE</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- Variáveis CSS para Cores e Propriedades (Paleta Mantecorp) --- */
+        :root {
+            --primary-orange: #FF6600; /* Laranja principal da Mantecorp */
+            --light-orange: #FFA500;   /* Laranja mais claro para highlights */
+            --dark-orange: #CC5200;    /* Laranja mais escuro para sombras */
+            --white-text: #FFFFFF;     /* Branco para texto */
+            --bg-color: #F8F8F8;       /* Fundo quase branco, sutil */
+            --card-bg: rgba(255, 255, 255, 0.9); /* Fundo do card translúcido branco */
+            
+            /* Neon Glow adaptado ao laranja */
+            --neon-glow: 0 0 10px var(--primary-orange), 0 0 20px var(--primary-orange), 0 0 30px rgba(255, 102, 0, 0.7);
+            
+            /* Gradientes dos botões */
+            --button-gradient-start: var(--primary-orange);
+            --button-gradient-end: var(--light-orange);
+            --hover-gradient-start: var(--light-orange);
+            --hover-gradient-end: var(--primary-orange);
+        }
+
+        /* --- Estilos Globais --- */
+        body {
+            font-family: 'Orbitron', sans-serif;
+            background: linear-gradient(135deg, var(--bg-color), #FFEEE0); 
+            color: #333333; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+            overflow-x: hidden;
+        }
+
+        /* --- TÍTULO ATUALIZADO --- */
+
+        /* Container para os dois títulos */
+        .title-container {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        /* Título Principal: "PAINEL REP" */
+        .title-container h1 {
+            font-size: 3.2rem;
+            font-weight: 700;
+            color: var(--primary-orange);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            
+            /* Efeito de brilho neon/3D */
+            text-shadow: 
+                0 0 10px rgba(255, 102, 0, 0.6), 
+                0 0 20px rgba(255, 102, 0, 0.4), 
+                0 0 30px rgba(255, 102, 0, 0.2);
+            
+            animation: neon-pulse-orange 2s infinite alternate;
+            
+            /* Ajustes de espaçamento */
+            margin: 0;
+            line-height: 1.1; /* Remove altura de linha extra */
+        }
+        
+        /* Subtítulo: "ALTA PERFORMANCE" */
+        .title-container .subtitle {
+            display: block; /* Para ficar abaixo do h1 */
+            font-size: 1.5rem; /* Menor que o principal */
+            font-weight: 500;
+            color: var(--primary-orange);
+            text-transform: uppercase;
+            letter-spacing: 6px; /* Mais espaçado para "destaque" */
+            
+            /* Efeito de brilho/3D mais sutil */
+            text-shadow: 0 0 10px rgba(255, 102, 0, 0.5);
+            
+            margin: 0;
+            padding-top: 5px; /* Pequeno espaço do título de cima */
+        }
+        
+        /* Animação do brilho (usada no h1) */
+        @keyframes neon-pulse-orange {
+            from {
+                text-shadow: 0 0 10px rgba(255, 102, 0, 0.6), 0 0 20px rgba(255, 102, 0, 0.4);
+            }
+            to {
+                text-shadow: 0 0 15px rgba(255, 102, 0, 0.8), 0 0 25px rgba(255, 102, 0, 0.6), 0 0 35px rgba(255, 102, 0, 0.4);
+            }
+        }
+        
+        /* --- FIM DO TÍTULO --- */
+
+
+        /* --- Container dos Cards --- */
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            width: 90%;
+            max-width: 1200px;
+            perspective: 1000px;
+        }
+
+        /* --- Estilo do Card Futurista (com borda laranja) --- */
+        .futuristic-card {
+            background: var(--card-bg);
+            border: 2px solid var(--primary-orange);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(255, 102, 0, 0.5); 
+            transition: all 0.3s ease-out;
+            transform: rotateY(0deg) rotateX(0deg);
+            transform-style: preserve-3d;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .futuristic-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg at 50% 50%, 
+                        transparent 0deg, transparent 90deg, 
+                        var(--primary-orange) 100deg, var(--primary-orange) 180deg, 
+                        transparent 190deg, transparent 270deg, 
+                        var(--primary-orange) 280deg, var(--primary-orange) 360deg);
+            animation: rotate-border 4s linear infinite;
+            opacity: 0;
+            transition: opacity 0.3s ease-out;
+            z-index: 0;
+        }
+
+        .futuristic-card:hover::before {
+            opacity: 1;
+        }
+        
+        @keyframes rotate-border {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .futuristic-card:hover {
+            transform: translateY(-8px) rotateX(5deg) rotateY(-5deg);
+            box-shadow: var(--neon-glow);
+        }
+
+        .futuristic-card h2 {
+            font-size: 1.5rem;
+            color: #333333;
+            margin-bottom: 20px;
+            letter-spacing: 1.5px;
+            text-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 2;
+        }
+
+        /* --- Estilo do Botão Dentro do Card (com gradiente laranja) --- */
+        .btn-futuristic {
+            display: inline-block;
+            padding: 18px 35px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--white-text);
+            background: linear-gradient(45deg, var(--button-gradient-start), var(--button-gradient-end));
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            text-align: center;
+            cursor: pointer;
+            box-shadow: 0 5px 0 var(--dark-orange), 0 0 15px rgba(255, 102, 0, 0.7); 
+            transition: all 0.25s ease-out;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn-futuristic::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.4);
+            transform: skewX(-30deg);
+            transition: left 0.4s ease-out;
+            z-index: 0;
+        }
+
+        .btn-futuristic:hover::before {
+            left: 100%;
+        }
+
+        .btn-futuristic:hover {
+            background: linear-gradient(45deg, var(--hover-gradient-start), var(--hover-gradient-end));
+            transform: translateY(-5px);
+            box-shadow: 0 8px 0 var(--dark-orange), 0 0 25px rgba(255, 102, 0, 0.9); 
+            color: white; 
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        }
+
+        .btn-futuristic:active {
+            background: linear-gradient(45deg, var(--button-gradient-start), var(--button-gradient-end));
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 var(--dark-orange), 0 0 10px rgba(255, 102, 0, 0.5);
+        }
+
+        /* --- Responsividade --- */
+        @media (max-width: 768px) {
+            .title-container {
+                margin-bottom: 40px;
+            }
+            .title-container h1 {
+                font-size: 2.5rem;
+            }
+            .title-container .subtitle {
+                font-size: 1.2rem;
+                letter-spacing: 5px;
+            }
+
+            .card-container {
+                grid-template-columns: 1fr;
+            }
+            .futuristic-card {
+                padding: 20px;
+            }
+            .futuristic-card h2 {
+                font-size: 1.3rem;
+            }
+            .btn-futuristic {
+                font-size: 1.1rem;
+                padding: 15px 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .title-container h1 {
+                font-size: 1.8rem;
+                letter-spacing: 2px;
+            }
+            .title-container .subtitle {
+                font-size: 1.0rem;
+                letter-spacing: 4px;
+            }
+            
+            .futuristic-card h2 {
+                font-size: 1.1rem;
+            }
+            .btn-futuristic {
+                font-size: 1rem;
+                padding: 12px 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="title-container">
+        <h1>PAINEL REP</h1>
+        <span class="subtitle">ALTA PERFORMANCE</span>
+    </div>
+
+    <div class="card-container">
+        
+        <div class="futuristic-card">
+            <h2>LISTA DE PREÇOS MANTECORP</h2>
+            <a href="https://altaperformancepro.github.io/LISTAPRECO/" target="_blank" rel="noopener noreferrer" class="btn-futuristic">
+                Acessar Lista
+            </a>
+        </div>
+        
+        <div class="futuristic-card">
+            <h2>LAVAGEM NASAL RINOSORO</h2>
+            <a href="https://sistemashypera.github.io/videorinosorofinal/" target="_blank" rel="noopener noreferrer" class="btn-futuristic">
+                Ver Vídeo
+            </a>
+        </div>
+        
+        <div class="futuristic-card">
+            <h2>PEDIDO PDV</h2>
+            <a href="https://altaperformancepro.github.io/PEDIDO_MANTECORP/" target="_blank" rel="noopener noreferrer" class="btn-futuristic">
+                Fazer Pedido
+            </a>
+        </div>
+        
+        <div class="futuristic-card">
+            <h2>SIMULADOR PREMIAÇÃO</h2>
+            <a href="https://altaperformancepro.github.io/simuladorpremiofull/" target="_blank" rel="noopener noreferrer" class="btn-futuristic">
+                Simular Premiação
+            </a>
+        </div>
+        
+    </div>
+
+</body>
+</html>
