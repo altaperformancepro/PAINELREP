@@ -3,20 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PAINEL REP - ALTA PERFORMANCE (Profundidade 3D)</title>
+    <title>PAINEL REP - ALTA PERFORMANCE (Mobile Compacto)</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
-        /* --- Variáveis CSS (Paleta Executiva - Azul, Laranja, Branco) --- */
+        /* --- Variáveis CSS (Paleta Executiva) --- */
         :root {
             --primary-blue: #005A9C;       
             --accent-orange: #FF6600;      
             --accent-orange-dark: #CC5200; 
-            
-            --bg-color: #EEEEEE;           /* Fundo cinza claro */
-            
-            --card-color: #FFFFFF;         /* Card branco puro */
+            --bg-color: #EEEEEE;           
+            --card-color: #FFFFFF;         
             --text-primary: #1A202C;       
             --text-secondary: #4A5568;     
         }
@@ -24,7 +22,7 @@
         /* --- Estilos Globais --- */
         body {
             font-family: 'Poppins', sans-serif; 
-            background-color: var(--bg-color); /* Aplica o fundo cinza */
+            background-color: var(--bg-color); 
             color: var(--text-primary); 
             display: flex;
             flex-direction: column;
@@ -77,19 +75,17 @@
             perspective: 1500px; 
         }
 
-        /* --- EFEITO 3D MODERNO NO CARD COM MAIS PROFUNDIDADE --- */
+        /* --- EFEITO 3D MODERNO NO CARD (Desktop/Tablet) --- */
         .futuristic-card {
             background-color: var(--card-color);
             border: 1px solid #E2E8F0;
             border-radius: 12px;
             padding: 30px 25px;
             text-align: center;
-            
             box-shadow: 
                 0 2px 4px rgba(0, 0, 0, 0.03), 
                 0 8px 16px rgba(0, 0, 0, 0.06), 
                 0 16px 32px rgba(0, 0, 0, 0.08); 
-            
             transform-style: preserve-3d; 
             transform: translateZ(0); 
             transition: transform 0.4s cubic-bezier(0.1, 0.7, 0.3, 1),
@@ -97,17 +93,14 @@
             position: relative;
         }
 
-        /* HOVER 3D NO CARD */
         .futuristic-card:hover {
             box-shadow: 
                 0 4px 8px rgba(0, 0, 0, 0.05),
                 0 16px 32px rgba(0, 0, 0, 0.1),
                 0 32px 64px rgba(0, 90, 156, 0.25); 
-            
             transform: rotateY(6deg) rotateX(2deg) scale(1.02) translateZ(15px);
         }
 
-        /* EFEITO 3D PARALAXE (Elementos internos) */
         .futuristic-card h2 {
             font-size: 1.6rem;
             color: var(--text-primary);
@@ -134,17 +127,13 @@
             text-decoration: none;
             text-align: center;
             cursor: pointer;
-            
             box-shadow: 0 4px 0 var(--accent-orange-dark); 
-            
             position: relative;
             overflow: hidden;
-            
             transform: translateZ(20px); 
             transition: background-position 0.5s ease-in-out, 
                         transform 0.4s cubic-bezier(0.1, 0.7, 0.3, 1),
                         box-shadow 0.2s ease-out;
-            
             background: linear-gradient(90deg, var(--primary-blue), var(--accent-orange), var(--primary-blue));
             background-size: 200% 100%;
             background-position: 100% 0;
@@ -177,23 +166,26 @@
             }
         }
         
-        /* OTIMIZAÇÃO PARA CELULAR (1 CARD POR LINHA) */
+        /* * ===============================================
+         * --- OTIMIZAÇÃO PARA CELULAR (FORMATADO/COMPACTO) ---
+         * ===============================================
+        */
         @media (max-width: 600px) {
             body {
-                padding: 30px 15px; 
+                padding: 20px 15px; /* Padding superior reduzido */
                 justify-content: flex-start; 
                 height: auto; 
                 overflow: auto; 
             }
             
             .card-container {
-                grid-template-columns: 1fr; 
+                grid-template-columns: 1fr; /* 1 coluna */
                 max-width: 100%;
-                gap: 25px; 
+                gap: 20px; /* Espaço entre cards reduzido */
             }
             
             .futuristic-card {
-                padding: 30px 25px; 
+                padding: 20px; /* Padding interno do card reduzido */
                 transform: none; 
                 box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.04), 
                             0px 10px 30px rgba(0, 0, 0, 0.06);
@@ -214,16 +206,18 @@
                 letter-spacing: 3px;
             }
             
+            /* Título do card ajustado */
             .futuristic-card h2 {
-                font-size: 1.7rem; 
-                margin-bottom: 30px; 
+                font-size: 1.3rem; /* Fonte menor */
+                margin-bottom: 20px; /* Margem menor */
                 transform: translateZ(0); 
             }
             
+            /* Botão do card em bloco, mas ajustado */
             .btn-futuristic {
                 display: block; 
-                padding: 18px 20px; 
-                font-size: 1.2rem; 
+                padding: 15px 20px; /* Padding menor */
+                font-size: 1.0rem; /* Fonte menor */
                 transform: translateZ(0); 
             }
 
