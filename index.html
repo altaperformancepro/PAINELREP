@@ -3,35 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PAINEL REP - ALTA PERFORMANCE</title>
+    <title>PAINEL REP - ALTA PERFORMANCE (Azul/Laranja)</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
     
     <style>
-        /* --- Variáveis CSS para Cores e Propriedades (Paleta Mantecorp) --- */
+        /* --- Variáveis CSS (Paleta Azul e Laranja) --- */
         :root {
-            --primary-orange: #FF6600; /* Laranja principal da Mantecorp */
-            --light-orange: #FFA500;   /* Laranja mais claro para highlights */
-            --dark-orange: #CC5200;    /* Laranja mais escuro para sombras */
-            --white-text: #FFFFFF;     /* Branco para texto */
-            --bg-color: #F8F8F8;       /* Fundo quase branco, sutil */
-            --card-bg: rgba(255, 255, 255, 0.9); /* Fundo do card translúcido branco */
+            --primary-blue: #007BFF;       /* Um azul elétrico vibrante */
+            --primary-blue-dark: #0056b3;  /* Azul escuro para sombras 3D */
+            --accent-orange: #FF6600;      /* O laranja Mantecorp como destaque */
+            --accent-orange-dark: #CC5200; /* Laranja escuro */
             
-            /* Neon Glow adaptado ao laranja */
-            --neon-glow: 0 0 10px var(--primary-orange), 0 0 20px var(--primary-orange), 0 0 30px rgba(255, 102, 0, 0.7);
+            --dark-bg: #0d0d20;           /* Fundo azul-escanoite muito escuro */
+            --card-bg: rgba(10, 10, 30, 0.75); /* Card azul escuro translúcido */
+            --white-text: #E0E5FF;       /* Texto branco com leve tom azulado */
             
-            /* Gradientes dos botões */
-            --button-gradient-start: var(--primary-orange);
-            --button-gradient-end: var(--light-orange);
-            --hover-gradient-start: var(--light-orange);
-            --hover-gradient-end: var(--primary-orange);
+            /* Brilhos Neon */
+            --neon-glow-orange: 0 0 10px var(--accent-orange), 0 0 20px var(--accent-orange), 0 0 30px rgba(255, 102, 0, 0.7);
+            --neon-glow-blue: 0 0 10px var(--primary-blue), 0 0 20px var(--primary-blue), 0 0 30px rgba(0, 123, 255, 0.7);
         }
 
         /* --- Estilos Globais --- */
         body {
             font-family: 'Orbitron', sans-serif;
-            background: linear-gradient(135deg, var(--bg-color), #FFEEE0); 
-            color: #333333; 
+            background: linear-gradient(135deg, var(--dark-bg), #000000); 
+            color: var(--white-text); 
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -43,52 +40,41 @@
             overflow-x: hidden;
         }
 
-        /* --- TÍTULO ATUALIZADO --- */
-
-        /* Container para os dois títulos */
+        /* --- TÍTULO (Laranja e Azul) --- */
         .title-container {
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 40px;
         }
 
-        /* Título Principal: "PAINEL REP" */
+        /* Título Principal em Laranja */
         .title-container h1 {
             font-size: 3.2rem;
             font-weight: 700;
-            color: var(--primary-orange);
+            color: var(--accent-orange); /* COR LARANJA */
             text-transform: uppercase;
             letter-spacing: 4px;
-            
-            /* Efeito de brilho neon/3D */
             text-shadow: 
                 0 0 10px rgba(255, 102, 0, 0.6), 
                 0 0 20px rgba(255, 102, 0, 0.4), 
                 0 0 30px rgba(255, 102, 0, 0.2);
-            
             animation: neon-pulse-orange 2s infinite alternate;
-            
-            /* Ajustes de espaçamento */
             margin: 0;
-            line-height: 1.1; /* Remove altura de linha extra */
+            line-height: 1.1;
         }
         
-        /* Subtítulo: "ALTA PERFORMANCE" */
+        /* Subtítulo em Azul */
         .title-container .subtitle {
-            display: block; /* Para ficar abaixo do h1 */
-            font-size: 1.5rem; /* Menor que o principal */
+            display: block;
+            font-size: 1.5rem;
             font-weight: 500;
-            color: var(--primary-orange);
+            color: var(--primary-blue); /* COR AZUL */
             text-transform: uppercase;
-            letter-spacing: 6px; /* Mais espaçado para "destaque" */
-            
-            /* Efeito de brilho/3D mais sutil */
-            text-shadow: 0 0 10px rgba(255, 102, 0, 0.5);
-            
+            letter-spacing: 6px;
+            text-shadow: 0 0 10px rgba(0, 123, 255, 0.7); /* Brilho azul */
             margin: 0;
-            padding-top: 5px; /* Pequeno espaço do título de cima */
+            padding-top: 5px;
         }
         
-        /* Animação do brilho (usada no h1) */
         @keyframes neon-pulse-orange {
             from {
                 text-shadow: 0 0 10px rgba(255, 102, 0, 0.6), 0 0 20px rgba(255, 102, 0, 0.4);
@@ -98,27 +84,23 @@
             }
         }
         
-        /* --- FIM DO TÍTULO --- */
-
-
-        /* --- Container dos Cards --- */
+        /* --- CONTAINER DOS CARDS (Borda Azul) --- */
         .card-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); 
+            gap: 20px;
             width: 90%;
-            max-width: 1200px;
+            max-width: 1000px;
             perspective: 1000px;
         }
 
-        /* --- Estilo do Card Futurista (com borda laranja) --- */
         .futuristic-card {
-            background: var(--card-bg);
-            border: 2px solid var(--primary-orange);
+            background: var(--card-bg); /* Fundo azul escuro translúcido */
+            border: 2px solid var(--primary-blue); /* Borda azul */
             border-radius: 15px;
-            padding: 25px;
+            padding: 20px;
             text-align: center;
-            box-shadow: 0 0 10px rgba(255, 102, 0, 0.5); 
+            box-shadow: 0 0 10px rgba(0, 123, 255, 0.5); /* Brilho azul */
             transition: all 0.3s ease-out;
             transform: rotateY(0deg) rotateX(0deg);
             transform-style: preserve-3d;
@@ -127,6 +109,7 @@
             z-index: 1;
         }
 
+        /* Efeito de brilho de borda (agora azul) */
         .futuristic-card::before {
             content: '';
             position: absolute;
@@ -136,9 +119,9 @@
             height: 200%;
             background: conic-gradient(from 0deg at 50% 50%, 
                         transparent 0deg, transparent 90deg, 
-                        var(--primary-orange) 100deg, var(--primary-orange) 180deg, 
+                        var(--primary-blue) 100deg, var(--primary-blue) 180deg, 
                         transparent 190deg, transparent 270deg, 
-                        var(--primary-orange) 280deg, var(--primary-orange) 360deg);
+                        var(--primary-blue) 280deg, var(--primary-blue) 360deg);
             animation: rotate-border 4s linear infinite;
             opacity: 0;
             transition: opacity 0.3s ease-out;
@@ -156,75 +139,73 @@
 
         .futuristic-card:hover {
             transform: translateY(-8px) rotateX(5deg) rotateY(-5deg);
-            box-shadow: var(--neon-glow);
+            box-shadow: var(--neon-glow-blue); /* Brilho azul mais intenso */
         }
 
         .futuristic-card h2 {
-            font-size: 1.5rem;
-            color: #333333;
-            margin-bottom: 20px;
+            font-size: 1.4rem;
+            color: var(--white-text); /* Texto branco-azulado */
+            margin-bottom: 18px;
             letter-spacing: 1.5px;
-            text-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
             position: relative;
             z-index: 2;
         }
 
-        /* --- Estilo do Botão Dentro do Card (com gradiente laranja) --- */
+        /* --- BOTÕES (NOVO EFEITO "GRADIENT WIPE") --- */
         .btn-futuristic {
             display: inline-block;
-            padding: 18px 35px;
-            font-size: 1.2rem;
+            padding: 16px 30px;
+            font-size: 1.1rem;
             font-weight: 700;
             color: var(--white-text);
-            background: linear-gradient(45deg, var(--button-gradient-start), var(--button-gradient-end));
             border: none;
             border-radius: 8px;
             text-decoration: none;
             text-align: center;
             cursor: pointer;
-            box-shadow: 0 5px 0 var(--dark-orange), 0 0 15px rgba(255, 102, 0, 0.7); 
-            transition: all 0.25s ease-out;
+            box-shadow: 0 4px 0 var(--primary-blue-dark); /* Sombra 3D azul */
             position: relative;
             overflow: hidden;
             z-index: 1;
+            transform: translateZ(0);
+            
+            /* *** O NOVO EFEITO *** */
+            /* 1. Gradiente 2x maior que o botão (Azul -> Laranja -> Azul) */
+            background: linear-gradient(90deg, var(--primary-blue), var(--accent-orange), var(--primary-blue));
+            background-size: 200% 100%;
+            
+            /* 2. Começa mostrando o lado direito do gradiente (que é azul) */
+            background-position: 100% 0;
+            
+            /* 3. Transição para a posição do gradiente e para o transform */
+            transition: background-position 0.5s ease-in-out, 
+                        transform 0.2s ease-out, 
+                        box-shadow 0.2s ease-out;
         }
 
-        .btn-futuristic::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.4);
-            transform: skewX(-30deg);
-            transition: left 0.4s ease-out;
-            z-index: 0;
-        }
-
-        .btn-futuristic:hover::before {
-            left: 100%;
-        }
-
+        /* HOVER: Desliza o gradiente para a esquerda, mostrando a "onda" laranja */
         .btn-futuristic:hover {
-            background: linear-gradient(45deg, var(--hover-gradient-start), var(--hover-gradient-end));
+            /* 4. Desliza o gradiente para a esquerda */
+            background-position: 0% 0;
+            
+            /* Efeito de elevação */
             transform: translateY(-5px);
-            box-shadow: 0 8px 0 var(--dark-orange), 0 0 25px rgba(255, 102, 0, 0.9); 
-            color: white; 
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+            box-shadow: 0 8px 0 var(--primary-blue-dark), 0 0 15px rgba(0, 123, 255, 0.5);
+            text-shadow: 0 0 5px var(--white-text);
         }
 
         .btn-futuristic:active {
-            background: linear-gradient(45deg, var(--button-gradient-start), var(--button-gradient-end));
+            background: linear-gradient(45deg, var(--primary-blue), var(--accent-orange));
             transform: translateY(2px);
-            box-shadow: 0 2px 0 var(--dark-orange), 0 0 10px rgba(255, 102, 0, 0.5);
+            box-shadow: 0 2px 0 var(--primary-blue-dark);
+            text-shadow: none;
+            transition: transform 0.1s, box-shadow 0.1s; /* Transição rápida de clique */
         }
+
 
         /* --- Responsividade --- */
         @media (max-width: 768px) {
-            .title-container {
-                margin-bottom: 40px;
-            }
             .title-container h1 {
                 font-size: 2.5rem;
             }
@@ -232,19 +213,8 @@
                 font-size: 1.2rem;
                 letter-spacing: 5px;
             }
-
             .card-container {
                 grid-template-columns: 1fr;
-            }
-            .futuristic-card {
-                padding: 20px;
-            }
-            .futuristic-card h2 {
-                font-size: 1.3rem;
-            }
-            .btn-futuristic {
-                font-size: 1.1rem;
-                padding: 15px 30px;
             }
         }
 
@@ -256,14 +226,6 @@
             .title-container .subtitle {
                 font-size: 1.0rem;
                 letter-spacing: 4px;
-            }
-            
-            .futuristic-card h2 {
-                font-size: 1.1rem;
-            }
-            .btn-futuristic {
-                font-size: 1rem;
-                padding: 12px 25px;
             }
         }
     </style>
