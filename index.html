@@ -3,21 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PAINEL REP - ALTA PERFORMANCE (Executivo 3D)</title>
+    <title>PAINEL REP - ALTA PERFORMANCE (Mobile Otimizado)</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
         /* --- Variáveis CSS (Paleta Executiva - Azul, Laranja, Branco) --- */
         :root {
-            --primary-blue: #005A9C;       /* Azul corporativo, profundo */
-            --accent-orange: #FF6600;      /* Laranja Mantecorp, vibrante */
-            --accent-orange-dark: #CC5200; /* Sombra do Laranja */
+            --primary-blue: #005A9C;
+            --accent-orange: #FF6600;
+            --accent-orange-dark: #CC5200;
             
-            --bg-color: #F4F7F9;           /* Fundo branco-gelo */
-            --card-color: #FFFFFF;         /* Card branco puro */
-            --text-primary: #1A202C;       /* Cor de texto principal */
-            --text-secondary: #4A5568;     /* Cor de texto secundária */
+            --bg-color: #F4F7F9;
+            --card-color: #FFFFFF;
+            --text-primary: #1A202C;
+            --text-secondary: #4A5568;
         }
 
         /* --- Estilos Globais --- */
@@ -34,7 +34,6 @@
             padding: 40px 20px;
             box-sizing: border-box;
             overflow-x: hidden;
-            /* Melhora a renderização de fontes */
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
@@ -70,7 +69,6 @@
         /* --- CONTAINER DOS CARDS (Responsivo) --- */
         .card-container {
             display: grid;
-            /* Desktop: Auto-fit (quantos couberem) com min de 320px */
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
             gap: 30px;
             width: 100%;
@@ -78,7 +76,7 @@
             perspective: 1500px; 
         }
 
-        /* --- EFEITO 3D MODERNO NO CARD --- */
+        /* --- EFEITO 3D MODERNO NO CARD (Desktop/Tablet) --- */
         .futuristic-card {
             background-color: var(--card-color);
             border: 1px solid #E2E8F0;
@@ -93,18 +91,15 @@
             transform: translateZ(0); 
             transition: transform 0.4s cubic-bezier(0.1, 0.7, 0.3, 1),
                         box-shadow 0.4s ease;
-            
             position: relative;
         }
 
-        /* HOVER 3D NO CARD */
         .futuristic-card:hover {
             box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.06), 
                         0px 20px 40px rgba(0, 90, 156, 0.15);
             transform: rotateY(8deg) rotateX(3deg) scale(1.02) translateZ(10px); 
         }
 
-        /* EFEITO 3D PARALAXE (Elementos internos) */
         .futuristic-card h2 {
             font-size: 1.6rem;
             color: var(--text-primary);
@@ -155,17 +150,16 @@
 
         .btn-futuristic:active {
             transform: translateZ(18px) translateY(1px);
-            box-shadow: 0 2px 0 var(--accent-orange-dark);
+            box-sAshadow: 0 2px 0 var(--accent-orange-dark);
         }
 
         /* --- RESPONSIVIDADE --- */
         
-        /* iPad (Tablet) - 2 colunas ou 1 coluna */
+        /* iPad (Tablet) */
         @media (max-width: 1024px) {
             .card-container {
-                /* auto-fit ainda funciona, mas o minmax menor ajuda a encaixar 2 colunas */
                 grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-                max-width: 90%; /* Centraliza o container */
+                max-width: 90%;
             }
             .title-container h1 {
                 font-size: 2.5rem;
@@ -175,28 +169,27 @@
             }
         }
         
-        /* CELULAR (com CARDS MAIORES) */
+        /* * ===============================================
+         * --- OTIMIZAÇÃO PARA CELULAR (CARDS MAIORES) ---
+         * ===============================================
+        */
         @media (max-width: 600px) {
             body {
-                padding: 30px 20px; /* Mais padding para os cards "respirarem" */
+                padding: 30px 15px; /* Menos padding lateral = cards mais largos */
             }
             .card-container {
-                grid-template-columns: 1fr; /* Força 1 coluna */
+                grid-template-columns: 1fr;
                 max-width: 100%;
-                gap: 25px; /* Mais espaço entre os cards */
+                gap: 25px;
             }
             .futuristic-card {
-                /* Mantém o padding grande para um card robusto */
                 padding: 30px 25px; 
-                
-                /* Desativa o efeito 3D de hover em toque (evita bugs) */
-                transform: none;
+                transform: none; /* Desativa 3D de hover */
                 box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.04), 
                             0px 10px 30px rgba(0, 0, 0, 0.06);
             }
-            /* Remove a inclinação 3D no celular */
             .futuristic-card:hover {
-                transform: none;
+                transform: none; /* Garante que não haja 3D no hover */
             }
             
             .title-container {
@@ -211,26 +204,33 @@
                 letter-spacing: 3px;
             }
             
-            /* Título do card maior */
+            /* Título do card BEM MAIOR */
             .futuristic-card h2 {
-                font-size: 1.5rem; 
-                transform: translateZ(0); /* Remove 3D no celular */
+                font-size: 1.7rem; /* Maior e mais visível */
+                margin-bottom: 30px; /* Mais espaço para o botão */
+                transform: translateZ(0); /* Remove 3D */
             }
             
-            /* Botão do card maior */
+            /* *** MUDANÇA PRINCIPAL *** */
+            /* Botão do card em BLOCO (largura total) */
             .btn-futuristic {
-                padding: 16px 35px;
-                font-size: 1.1rem;
-                transform: translateZ(0); /* Remove 3D no celular */
+                display: block; /* Ocupa a largura total */
+                padding: 18px 20px; /* Padding ajustado para bloco */
+                font-size: 1.2rem; /* Fonte maior para toque */
+                transform: translateZ(0); /* Remove 3D */
             }
 
             .futuristic-card:hover h2,
             .btn-futuristic:hover {
-                transform: none; /* Desativa 3D de paralaxe no hover do celular */
+                transform: none; /* Desativa 3D de paralaxe no hover */
+                /* Remove o efeito de gradiente no hover (não existe hover no celular) */
+                background-position: 100% 0; 
             }
 
+            /* Efeito de clique 2D, mais visível */
             .btn-futuristic:active {
-                transform: translateY(2px); /* Efeito 2D simples de clique */
+                transform: translateY(2px) scale(0.98); /* Efeito de "pressionar" */
+                background-position: 0% 0; /* Mostra o gradiente ao pressionar */
             }
         }
     </style>
