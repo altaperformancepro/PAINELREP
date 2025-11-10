@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PAINEL REP - ALTA PERFORMANCE (Mobile Otimizado)</title>
+    <title>PAINEL REP - ALTA PERFORMANCE (Tela Única)</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
@@ -150,7 +150,7 @@
 
         .btn-futuristic:active {
             transform: translateZ(18px) translateY(1px);
-            box-sAshadow: 0 2px 0 var(--accent-orange-dark);
+            box-shadow: 0 2px 0 var(--accent-orange-dark);
         }
 
         /* --- RESPONSIVIDADE --- */
@@ -170,67 +170,70 @@
         }
         
         /* * ===============================================
-         * --- OTIMIZAÇÃO PARA CELULAR (CARDS MAIORES) ---
+         * --- OTIMIZAÇÃO PARA CELULAR (TELA ÚNICA 2x2) ---
          * ===============================================
         */
         @media (max-width: 600px) {
             body {
-                padding: 30px 15px; /* Menos padding lateral = cards mais largos */
-            }
-            .card-container {
-                grid-template-columns: 1fr;
-                max-width: 100%;
-                gap: 25px;
-            }
-            .futuristic-card {
-                padding: 30px 25px; 
-                transform: none; /* Desativa 3D de hover */
-                box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.04), 
-                            0px 10px 30px rgba(0, 0, 0, 0.06);
-            }
-            .futuristic-card:hover {
-                transform: none; /* Garante que não haja 3D no hover */
+                /* Força a tela a ter 100% da altura e proíbe rolar */
+                height: 100dvh; /* Altura dinâmica da tela */
+                overflow: hidden;
+                justify-content: center; /* Centraliza tudo verticalmente */
+                padding: 20px 15px;
             }
             
             .title-container {
-                margin-bottom: 30px;
+                margin-bottom: 20px; /* Margem menor */
             }
             .title-container h1 {
-                font-size: 2rem;
+                font-size: 1.5rem; /* Fonte muito menor */
                 letter-spacing: 1px;
             }
             .title-container .subtitle {
-                font-size: 1rem;
-                letter-spacing: 3px;
+                font-size: 0.9rem; /* Fonte muito menor */
+                letter-spacing: 2px;
             }
             
-            /* Título do card BEM MAIOR */
+            /* --- MUDA PARA 2 COLUNAS --- */
+            .card-container {
+                grid-template-columns: 1fr 1fr; /* 2 colunas */
+                max-width: 100%;
+                gap: 15px; /* Espaço menor */
+            }
+            
+            .futuristic-card {
+                padding: 15px 10px; /* Padding muito menor */
+                transform: none; 
+                box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.04);
+            }
+            .futuristic-card:hover {
+                transform: none; 
+            }
+            
+            /* Título do card BEM MENOR */
             .futuristic-card h2 {
-                font-size: 1.7rem; /* Maior e mais visível */
-                margin-bottom: 30px; /* Mais espaço para o botão */
-                transform: translateZ(0); /* Remove 3D */
+                font-size: 1.0rem; /* Fonte muito menor */
+                margin-bottom: 15px; /* Margem menor */
+                transform: translateZ(0); 
             }
             
-            /* *** MUDANÇA PRINCIPAL *** */
-            /* Botão do card em BLOCO (largura total) */
+            /* Botão do card BEM MENOR */
             .btn-futuristic {
-                display: block; /* Ocupa a largura total */
-                padding: 18px 20px; /* Padding ajustado para bloco */
-                font-size: 1.2rem; /* Fonte maior para toque */
-                transform: translateZ(0); /* Remove 3D */
+                display: inline-block; /* Volta a ser inline */
+                padding: 10px 15px; /* Padding muito menor */
+                font-size: 0.9rem; /* Fonte muito menor */
+                transform: translateZ(0);
             }
 
             .futuristic-card:hover h2,
             .btn-futuristic:hover {
-                transform: none; /* Desativa 3D de paralaxe no hover */
-                /* Remove o efeito de gradiente no hover (não existe hover no celular) */
+                transform: none; 
                 background-position: 100% 0; 
             }
 
-            /* Efeito de clique 2D, mais visível */
             .btn-futuristic:active {
-                transform: translateY(2px) scale(0.98); /* Efeito de "pressionar" */
-                background-position: 0% 0; /* Mostra o gradiente ao pressionar */
+                transform: translateY(2px) scale(0.98);
+                background-position: 0% 0; 
             }
         }
     </style>
@@ -247,28 +250,28 @@
         <div class="futuristic-card">
             <h2>LISTA DE PREÇOS MANTECORP</h2>
             <a href="https://altaperformancepro.github.io/LISTAPRECO/" target="_blank" rel="noopener noreferrer" class="btn-futuristic">
-                Acessar Lista
+                Acessar
             </a>
         </div>
         
         <div class="futuristic-card">
             <h2>LAVAGEM NASAL RINOSORO</h2>
             <a href="httpss://sistemashypera.github.io/videorinosorofinal/" target="_blank" rel="noopener noreferrer" class="btn-futuristic">
-                Ver Vídeo
+                Ver
             </a>
         </div>
         
         <div class="futuristic-card">
             <h2>PEDIDO PDV</h2>
             <a href="https://altaperformancepro.github.io/PEDIDO_MANTECORP/" target="_blank" rel="noopener noreferrer" class="btn-futuristic">
-                Fazer Pedido
+                Pedir
             </a>
         </div>
         
         <div class="futuristic-card">
             <h2>SIMULADOR PREMIAÇÃO</h2>
             <a href="https://altaperformancepro.github.io/simuladorpremiofull/" target="_blank" rel="noopener noreferrer" class="btn-futuristic">
-                Simular Premiação
+                Simular
             </a>
         </div>
         
