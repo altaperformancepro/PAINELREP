@@ -3,27 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PAINEL REP - ALTA PERFORMANCE (Tela Única)</title>
+    <title>PAINEL REP - ALTA PERFORMANCE (Profundidade 3D)</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
         /* --- Variáveis CSS (Paleta Executiva - Azul, Laranja, Branco) --- */
         :root {
-            --primary-blue: #005A9C;
-            --accent-orange: #FF6600;
-            --accent-orange-dark: #CC5200;
+            --primary-blue: #005A9C;       
+            --accent-orange: #FF6600;      
+            --accent-orange-dark: #CC5200; 
             
-            --bg-color: #F4F7F9;
-            --card-color: #FFFFFF;
-            --text-primary: #1A202C;
-            --text-secondary: #4A5568;
+            --bg-color: #EEEEEE;           /* Fundo cinza claro */
+            
+            --card-color: #FFFFFF;         /* Card branco puro */
+            --text-primary: #1A202C;       
+            --text-secondary: #4A5568;     
         }
 
         /* --- Estilos Globais --- */
         body {
             font-family: 'Poppins', sans-serif; 
-            background-color: var(--bg-color); 
+            background-color: var(--bg-color); /* Aplica o fundo cinza */
             color: var(--text-primary); 
             display: flex;
             flex-direction: column;
@@ -76,7 +77,7 @@
             perspective: 1500px; 
         }
 
-        /* --- EFEITO 3D MODERNO NO CARD (Desktop/Tablet) --- */
+        /* --- EFEITO 3D MODERNO NO CARD COM MAIS PROFUNDIDADE --- */
         .futuristic-card {
             background-color: var(--card-color);
             border: 1px solid #E2E8F0;
@@ -84,8 +85,10 @@
             padding: 30px 25px;
             text-align: center;
             
-            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.04), 
-                        0px 10px 30px rgba(0, 0, 0, 0.06);
+            box-shadow: 
+                0 2px 4px rgba(0, 0, 0, 0.03), 
+                0 8px 16px rgba(0, 0, 0, 0.06), 
+                0 16px 32px rgba(0, 0, 0, 0.08); 
             
             transform-style: preserve-3d; 
             transform: translateZ(0); 
@@ -94,12 +97,17 @@
             position: relative;
         }
 
+        /* HOVER 3D NO CARD */
         .futuristic-card:hover {
-            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.06), 
-                        0px 20px 40px rgba(0, 90, 156, 0.15);
-            transform: rotateY(8deg) rotateX(3deg) scale(1.02) translateZ(10px); 
+            box-shadow: 
+                0 4px 8px rgba(0, 0, 0, 0.05),
+                0 16px 32px rgba(0, 0, 0, 0.1),
+                0 32px 64px rgba(0, 90, 156, 0.25); 
+            
+            transform: rotateY(6deg) rotateX(2deg) scale(1.02) translateZ(15px);
         }
 
+        /* EFEITO 3D PARALAXE (Elementos internos) */
         .futuristic-card h2 {
             font-size: 1.6rem;
             color: var(--text-primary);
@@ -169,60 +177,54 @@
             }
         }
         
-        /* * ===============================================
-         * --- OTIMIZAÇÃO PARA CELULAR (TELA ÚNICA 2x2) ---
-         * ===============================================
-        */
+        /* OTIMIZAÇÃO PARA CELULAR (1 CARD POR LINHA) */
         @media (max-width: 600px) {
             body {
-                /* Força a tela a ter 100% da altura e proíbe rolar */
-                height: 100dvh; /* Altura dinâmica da tela */
-                overflow: hidden;
-                justify-content: center; /* Centraliza tudo verticalmente */
-                padding: 20px 15px;
+                padding: 30px 15px; 
+                justify-content: flex-start; 
+                height: auto; 
+                overflow: auto; 
             }
             
-            .title-container {
-                margin-bottom: 20px; /* Margem menor */
-            }
-            .title-container h1 {
-                font-size: 1.5rem; /* Fonte muito menor */
-                letter-spacing: 1px;
-            }
-            .title-container .subtitle {
-                font-size: 0.9rem; /* Fonte muito menor */
-                letter-spacing: 2px;
-            }
-            
-            /* --- MUDA PARA 2 COLUNAS --- */
             .card-container {
-                grid-template-columns: 1fr 1fr; /* 2 colunas */
+                grid-template-columns: 1fr; 
                 max-width: 100%;
-                gap: 15px; /* Espaço menor */
+                gap: 25px; 
             }
             
             .futuristic-card {
-                padding: 15px 10px; /* Padding muito menor */
+                padding: 30px 25px; 
                 transform: none; 
-                box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.04);
+                box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.04), 
+                            0px 10px 30px rgba(0, 0, 0, 0.06);
             }
             .futuristic-card:hover {
                 transform: none; 
             }
             
-            /* Título do card BEM MENOR */
+            .title-container {
+                margin-bottom: 30px;
+            }
+            .title-container h1 {
+                font-size: 2rem;
+                letter-spacing: 1px;
+            }
+            .title-container .subtitle {
+                font-size: 1rem;
+                letter-spacing: 3px;
+            }
+            
             .futuristic-card h2 {
-                font-size: 1.0rem; /* Fonte muito menor */
-                margin-bottom: 15px; /* Margem menor */
+                font-size: 1.7rem; 
+                margin-bottom: 30px; 
                 transform: translateZ(0); 
             }
             
-            /* Botão do card BEM MENOR */
             .btn-futuristic {
-                display: inline-block; /* Volta a ser inline */
-                padding: 10px 15px; /* Padding muito menor */
-                font-size: 0.9rem; /* Fonte muito menor */
-                transform: translateZ(0);
+                display: block; 
+                padding: 18px 20px; 
+                font-size: 1.2rem; 
+                transform: translateZ(0); 
             }
 
             .futuristic-card:hover h2,
@@ -232,7 +234,7 @@
             }
 
             .btn-futuristic:active {
-                transform: translateY(2px) scale(0.98);
+                transform: translateY(2px) scale(0.98); 
                 background-position: 0% 0; 
             }
         }
@@ -250,28 +252,28 @@
         <div class="futuristic-card">
             <h2>LISTA DE PREÇOS MANTECORP</h2>
             <a href="https://altaperformancepro.github.io/LISTAPRECO/" target="_blank" rel="noopener noreferrer" class="btn-futuristic">
-                Acessar
+                Acessar Lista
             </a>
         </div>
         
         <div class="futuristic-card">
             <h2>LAVAGEM NASAL RINOSORO</h2>
-            <a href="httpss://sistemashypera.github.io/videorinosorofinal/" target="_blank" rel="noopener noreferrer" class="btn-futuristic">
-                Ver
+            <a href="https://sistemashypera.github.io/videorinosorofinal/" target="_blank" rel="noopener noreferrer" class="btn-futuristic">
+                Ver Vídeo
             </a>
         </div>
         
         <div class="futuristic-card">
             <h2>PEDIDO PDV</h2>
             <a href="https://altaperformancepro.github.io/PEDIDO_MANTECORP/" target="_blank" rel="noopener noreferrer" class="btn-futuristic">
-                Pedir
+                Fazer Pedido
             </a>
         </div>
         
         <div class="futuristic-card">
             <h2>SIMULADOR PREMIAÇÃO</h2>
             <a href="https://altaperformancepro.github.io/simuladorpremiofull/" target="_blank" rel="noopener noreferrer" class="btn-futuristic">
-                Simular
+                Simular Premiação
             </a>
         </div>
         
